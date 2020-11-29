@@ -1,2 +1,0 @@
-.two-columns{display:grid;grid-template-columns:3fr 2fr;grid-column-gap:20px;grid-row-gap:20px}@media only screen and (max-width:1200px){.two-columns{grid-template-columns:1fr}}
-/*# sourceMappingURL=main.39c11e5b.chunk.css.map */
