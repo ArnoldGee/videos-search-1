@@ -38,6 +38,7 @@ export class App extends Component {
     const {videos, selectedVideo} = this.state;
     return (
       <div className="ui container">
+        <h1 className="big-title"><span className="red">YouTube</span> procrastinator</h1>
         <SearchBar onFormSubmit={this.onTermSubmit} />
         <div className="two-columns">
           <div>
