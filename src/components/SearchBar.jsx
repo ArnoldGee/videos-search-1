@@ -6,7 +6,7 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div className="search-bar ui segment">
+      <div className="search-bar ui segment" style={{marginTop: "15px"}}>
         <form
           onSubmit={(e) => {
             e.preventDefault();

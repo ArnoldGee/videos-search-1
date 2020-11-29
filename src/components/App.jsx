@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import {KEY, youtube} from '../apis/YouTube';
 import SearchBar from './SearchBar';
+import VideoDetail from './VideoDetail';
+import VideoList from './VideoList';
+
+import './App.css';
 
 export class App extends Component {
-  state = {videos: []};
+  state = {videos: [], selectedVideo: null};
 
   onTermSubmit = async (term) => {
     const response = await youtube.get('/search', {
@@ -16,16 +20,33 @@ export class App extends Component {
       },
     });
     if (response.data.items) {
-      this.setState({videos: response.data.items});
+      this.setState({
+        videos: response.data.items,
+        selectedVideo: response.data.items[0],
+      });
     } else {
       console.warn('Ooops! API call was unsuccessful');
     }
   };
+
+  onVideoSelect = (video) => {
+    this.setState({selectedVideo: video});
+    console.log(video);
+  };
+
   render() {
+    const {videos, selectedVideo} = this.state;
     return (
       <div className="ui container">
         <SearchBar onFormSubmit={this.onTermSubmit} />
-        I have {this.state.videos.length} videos
+        <div className="two-columns">
+          <div>
+            <VideoDetail video={selectedVideo} />
+          </div>
+          <div>
+            <VideoList videos={videos} onVideoSelect={this.onVideoSelect} />
+          </div>
+        </div>
       </div>
     );
   }
